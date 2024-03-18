@@ -1,5 +1,5 @@
 import { UploadMapper } from '#domain/mappers/upload-mapper.js'
-import { UploadFile } from '#services/usecases/upload-file.service.js'
+import { UploadService } from '#services/usecases/upload.service.js'
 import {
   Body,
   Controller,
@@ -22,8 +22,8 @@ class UploadBodyDto {
 }
 
 @Controller()
-export class UploadFileController {
-  constructor(private readonly uploadFile: UploadFile) {}
+export class UploadServiceController {
+  constructor(private readonly uploadService: UploadService) {}
 
   @Post('upload')
   @UseInterceptors(AnyFilesInterceptor())
@@ -31,7 +31,7 @@ export class UploadFileController {
     @Body() body: UploadBodyDto,
     @UploadedFiles() files: Express.Multer.File[]
   ): Promise<ReturnType<UploadMapper['toHttp']>> {
-    const upload = await this.uploadFile.upload({
+    const upload = await this.uploadService.upload({
       title: body.title,
       message: body.message,
       size: files.reduce((acc, file) => acc + file.size, 0),

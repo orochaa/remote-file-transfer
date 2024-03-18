@@ -3,7 +3,7 @@ import { UploadRepository } from '#infra/database/postgres/upload-repository.js'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class UploadFile {
+export class UploadService {
   constructor(private readonly uploadRepository: UploadRepository) {}
 
   async upload(data: Upload.Params): Promise<Upload> {
