@@ -9,8 +9,8 @@ export class DownloadUploadController {
 
   @Get('download/upload/:uploadId')
   async handle(@Param('uploadId') uploadId: string): Promise<StreamableFile> {
-    const { zipFilePath } = await this.downloadUpload.download(uploadId)
+    const file = await this.downloadUpload.download(uploadId)
 
-    return new StreamableFile(createReadStream(zipFilePath))
+    return new StreamableFile(createReadStream(file.path))
   }
 }

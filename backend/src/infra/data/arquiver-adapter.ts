@@ -1,5 +1,5 @@
 /* eslint-disable security/detect-non-literal-fs-filename */
-import type { File } from '#domain/entities/file.js'
+import { File } from '#domain/entities/file.js'
 import { Injectable } from '@nestjs/common'
 import archiver from 'archiver'
 import { randomUUID } from 'node:crypto'
@@ -8,18 +8,20 @@ import { join } from 'node:path'
 
 @Injectable()
 export class ArchiverAdapter {
-  constructor(
-    private readonly filesFolderPath: string,
-    private readonly zipFolderPath: string
-  ) {}
+  constructor(private readonly zipFolderPath: string) {}
 
-  async zip(files: File[]): Promise<{ zipFilePath: string }> {
+  async zip(files: File[]): Promise<File> {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const zipFileId = randomUUID().slice(0, 4)
     const zipFileName = `remote-file-transfer-${zipFileId}.zip`
-    const zipFilePath = join(this.zipFolderPath, zipFileName)
+    const zip = new File({
+      name: zipFileName,
+      path: join(this.zipFolderPath, zipFileName),
+      mimetype: 'application/zip',
+      size: 0,
+    })
 
-    const zipStream = createWriteStream(zipFilePath)
+    const zipStream = createWriteStream(zip.path)
     zipStream.on('error', err => {
       throw err
     })
@@ -28,11 +30,11 @@ export class ArchiverAdapter {
     archive.pipe(zipStream)
 
     for (const file of files) {
-      archive.file(join(this.filesFolderPath, file.name), { name: file.name })
+      archive.file(file.path, { name: file.name })
     }
 
     await archive.finalize()
 
-    return { zipFilePath }
+    return zip
   }
 }

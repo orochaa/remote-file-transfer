@@ -35,7 +35,12 @@ export class UploadServiceController {
       title: body.title,
       message: body.message,
       size: files.reduce((acc, file) => acc + file.size, 0),
-      files: files.map(file => ({ name: file.filename, size: file.size })),
+      files: files.map(file => ({
+        name: file.filename,
+        size: file.size,
+        path: file.path,
+        mimetype: file.mimetype,
+      })),
       expiresAt: body.expiresAt,
     })
 

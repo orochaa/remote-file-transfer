@@ -24,6 +24,14 @@ export class File {
     return this.props.name
   }
 
+  get path(): string {
+    return this.props.path
+  }
+
+  get mimetype(): string {
+    return this.props.mimetype
+  }
+
   get size(): number {
     return this.props.size
   }
@@ -38,6 +46,8 @@ export namespace File {
     id: UUID
     uploadId: string
     name: string
+    path: string
+    mimetype: string
     size: number
     createdAt: Date
   }
@@ -46,6 +56,8 @@ export namespace File {
     id?: string
     uploadId?: string
     name: string
+    path: string
+    mimetype: string
     size: number
     createdAt?: Date
   }

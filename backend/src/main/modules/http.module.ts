@@ -1,8 +1,11 @@
+import { DownloadFileController } from '#presentation/controllers/download-file.controller.js'
 import { DownloadUploadController } from '#presentation/controllers/download-upload.controller.js'
 import { UploadServiceController } from '#presentation/controllers/upload-file.controller.js'
+import { DownloadFileService } from '#services/usecases/download-file.service.js'
 import { DownloadUploadService } from '#services/usecases/download-upload.service.js'
 import { UploadService } from '#services/usecases/upload.service.js'
 import { ArchiverAdapter } from '#infra/data/arquiver-adapter.js'
+import { FileRepository } from '#infra/database/postgres/file-repository.js'
 import { PrismaService } from '#infra/database/postgres/prisma.service.js'
 import { UploadRepository } from '#infra/database/postgres/upload-repository.js'
 import { Module } from '@nestjs/common'
@@ -11,21 +14,23 @@ import { resolve } from 'node:path'
 
 @Module({
   imports: [MulterModule.register({ dest: resolve('public/uploads') })],
-  controllers: [UploadServiceController, DownloadUploadController],
+  controllers: [
+    UploadServiceController,
+    DownloadUploadController,
+    DownloadFileController,
+  ],
   providers: [
     PrismaService,
     UploadRepository,
+    FileRepository,
     {
       provide: ArchiverAdapter,
-      useFactory: (): ArchiverAdapter => {
-        return new ArchiverAdapter(
-          resolve('public/uploads'),
-          resolve('public/zip')
-        )
-      },
+      useFactory: (): ArchiverAdapter =>
+        new ArchiverAdapter(resolve('public/uploads')),
     },
     UploadService,
     DownloadUploadService,
+    DownloadFileService,
   ],
 })
 export class HttpModule {}

@@ -1,3 +1,4 @@
+import type { File } from '#domain/entities/file.js'
 import { ArchiverAdapter } from '#infra/data/arquiver-adapter.js'
 import { UploadRepository } from '#infra/database/postgres/upload-repository.js'
 import { Injectable, NotFoundException } from '@nestjs/common'
@@ -9,7 +10,7 @@ export class DownloadUploadService {
     private readonly archiver: ArchiverAdapter
   ) {}
 
-  async download(uploadId: string): Promise<{ zipFilePath: string }> {
+  async download(uploadId: string): Promise<File> {
     const upload = await this.findUploadByIdRepository.findById(uploadId)
 
     if (!upload) {
