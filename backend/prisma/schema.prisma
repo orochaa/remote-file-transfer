@@ -12,3 +12,25 @@ datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
+model Upload {
+  id        String   @id
+  title     String
+  message   String
+  size      Int
+  expiresAt DateTime
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+
+  files File[]
+}
+
+model File {
+  id        String   @id
+  uploadId  String
+  name      String
+  size      Int
+  createdAt DateTime
+
+  upload Upload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+}

@@ -16,6 +16,7 @@ async function bootstrap(): Promise<void> {
   )
 
   await app.listen(port)
+
   process.stdout.write(`🚀 Server is running on ${await app.getUrl()}\n`)
 }
 
