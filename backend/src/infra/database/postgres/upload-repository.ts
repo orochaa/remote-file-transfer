@@ -1,4 +1,3 @@
-import { File } from '#domain/entities/file.js'
 import { Upload } from '#domain/entities/upload.js'
 import { FileMapper } from '#domain/mappers/file-mapper.js'
 import { UploadMapper } from '#domain/mappers/upload-mapper.js'
@@ -14,7 +13,10 @@ export class UploadRepository {
       data: {
         ...new UploadMapper(data).toPrisma(),
         files: {
-          create: data.files.map(file => new FileMapper(file).toPrisma()),
+          create: data.files.map(file => ({
+            ...new FileMapper(file).toPrisma(),
+            uploadId: undefined,
+          })),
         },
       },
     })
@@ -34,10 +36,7 @@ export class UploadRepository {
       return null
     }
 
-    return new Upload({
-      ...data,
-      files: data.files.map(file => new File(file)),
-    })
+    return new Upload(data)
   }
 
   async update(data: Upload): Promise<void> {

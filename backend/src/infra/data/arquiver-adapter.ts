@@ -3,8 +3,8 @@ import { File } from '#domain/entities/file.js'
 import { Injectable } from '@nestjs/common'
 import archiver from 'archiver'
 import { randomUUID } from 'node:crypto'
-import { createWriteStream } from 'node:fs'
-import { join } from 'node:path'
+import { createReadStream, createWriteStream } from 'node:fs'
+import { join, resolve } from 'node:path'
 
 @Injectable()
 export class ArchiverAdapter {
@@ -12,10 +12,10 @@ export class ArchiverAdapter {
 
   async zip(files: File[]): Promise<File> {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    const zipFileId = randomUUID().slice(0, 4)
-    const zipFileName = `remote-file-transfer-${zipFileId}.zip`
+    const zipFileName = randomUUID().replaceAll('-', '')
     const zip = new File({
       name: zipFileName,
+      originalName: 'remote-file-transfer.zip',
       path: join(this.zipFolderPath, zipFileName),
       mimetype: 'application/zip',
       size: 0,
@@ -30,7 +30,7 @@ export class ArchiverAdapter {
     archive.pipe(zipStream)
 
     for (const file of files) {
-      archive.file(file.path, { name: file.name })
+      archive.append(createReadStream(resolve(file.path)), { name: file.name })
     }
 
     await archive.finalize()

@@ -1,5 +1,5 @@
 {
-  "name": "remote-file-transfer",
+  "name": "@remote-file-transfer/backend",
   "version": "1.0.0",
   "description": "",
   "main": "src/main/server.ts",

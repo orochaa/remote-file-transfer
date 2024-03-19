@@ -22,7 +22,7 @@ class UploadBodyDto {
 }
 
 @Controller()
-export class UploadServiceController {
+export class UploadController {
   constructor(private readonly uploadService: UploadService) {}
 
   @Post('upload')
@@ -37,6 +37,7 @@ export class UploadServiceController {
       size: files.reduce((acc, file) => acc + file.size, 0),
       files: files.map(file => ({
         name: file.filename,
+        originalName: file.originalname,
         size: file.size,
         path: file.path,
         mimetype: file.mimetype,

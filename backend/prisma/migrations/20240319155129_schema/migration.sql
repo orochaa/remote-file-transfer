@@ -14,7 +14,10 @@ CREATE TABLE "File" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "uploadId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "originalName" TEXT NOT NULL,
+    "path" TEXT NOT NULL,
+    "mimetype" TEXT NOT NULL,
     "size" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL,
-    CONSTRAINT "File_uploadId_fkey" FOREIGN KEY ("uploadId") REFERENCES "Upload" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "File_uploadId_fkey" FOREIGN KEY ("uploadId") REFERENCES "Upload" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );

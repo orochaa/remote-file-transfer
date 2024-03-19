@@ -1,6 +1,6 @@
 import { DownloadFileController } from '#presentation/controllers/download-file.controller.js'
 import { DownloadUploadController } from '#presentation/controllers/download-upload.controller.js'
-import { UploadServiceController } from '#presentation/controllers/upload-file.controller.js'
+import { UploadController } from '#presentation/controllers/upload.controller.js'
 import { DownloadFileService } from '#services/usecases/download-file.service.js'
 import { DownloadUploadService } from '#services/usecases/download-upload.service.js'
 import { UploadService } from '#services/usecases/upload.service.js'
@@ -15,7 +15,7 @@ import { resolve } from 'node:path'
 @Module({
   imports: [MulterModule.register({ dest: resolve('public/uploads') })],
   controllers: [
-    UploadServiceController,
+    UploadController,
     DownloadUploadController,
     DownloadFileController,
   ],
@@ -26,7 +26,7 @@ import { resolve } from 'node:path'
     {
       provide: ArchiverAdapter,
       useFactory: (): ArchiverAdapter =>
-        new ArchiverAdapter(resolve('public/uploads')),
+        new ArchiverAdapter(resolve('public/zips')),
     },
     UploadService,
     DownloadUploadService,

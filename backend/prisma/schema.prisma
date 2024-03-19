@@ -26,13 +26,14 @@ model Upload {
 }
 
 model File {
-  id        String   @id
-  uploadId  String
-  name      String
-  path      String
-  mimetype  String
-  size      Int
-  createdAt DateTime
+  id           String   @id
+  uploadId     String
+  name         String
+  originalName String
+  path         String
+  mimetype     String
+  size         Int
+  createdAt    DateTime
 
   upload Upload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
 }

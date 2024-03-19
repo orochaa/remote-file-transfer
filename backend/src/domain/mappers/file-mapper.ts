@@ -9,6 +9,7 @@ export class FileMapper {
       id: this.props.id,
       uploadId: this.props.uploadId,
       name: this.props.name,
+      originalName: this.props.originalName,
       path: this.props.path,
       mimetype: this.props.mimetype,
       size: this.props.size,
@@ -19,7 +20,7 @@ export class FileMapper {
   public toHttp() {
     return {
       id: this.props.id,
-      name: this.props.name,
+      name: this.props.originalName,
       size: this.props.size,
       mimetype: this.props.mimetype,
       createdAt: this.props.createdAt,
