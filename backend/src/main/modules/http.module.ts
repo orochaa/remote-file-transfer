@@ -1,8 +1,10 @@
 import { DownloadFileController } from '#presentation/controllers/download-file.controller.js'
 import { DownloadUploadController } from '#presentation/controllers/download-upload.controller.js'
+import { FindUploadByIdController } from '#presentation/controllers/find-upload-by-id.controller.js'
 import { UploadController } from '#presentation/controllers/upload.controller.js'
 import { DownloadFileService } from '#services/usecases/download-file.service.js'
 import { DownloadUploadService } from '#services/usecases/download-upload.service.js'
+import { FindUploadByIdService } from '#services/usecases/find-upload-by-id.service.js'
 import { UploadService } from '#services/usecases/upload.service.js'
 import { ArchiverAdapter } from '#infra/data/arquiver-adapter.js'
 import { FileRepository } from '#infra/database/postgres/file-repository.js'
@@ -16,6 +18,7 @@ import { resolve } from 'node:path'
   imports: [MulterModule.register({ dest: resolve('public/uploads') })],
   controllers: [
     UploadController,
+    FindUploadByIdController,
     DownloadUploadController,
     DownloadFileController,
   ],
@@ -29,6 +32,7 @@ import { resolve } from 'node:path'
         new ArchiverAdapter(resolve('public/zips')),
     },
     UploadService,
+    FindUploadByIdService,
     DownloadUploadService,
     DownloadFileService,
   ],
