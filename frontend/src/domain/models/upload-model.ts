@@ -8,9 +8,9 @@ export interface Upload {
   mimetype: string
   path: string
   size: number
-  expiresAt: Date
-  createdAt: Date
-  updatedAt: Date
+  expiresAt: string
+  createdAt: string
+  updatedAt: string
 
   files: File[]
 }

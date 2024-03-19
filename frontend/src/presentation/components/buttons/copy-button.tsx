@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MdContentCopy, MdDone } from 'react-icons/md'
 
 export interface CopyButtonProps {
@@ -13,8 +13,12 @@ export function CopyButton(props: CopyButtonProps): React.JSX.Element {
   const [isCopied, setIsCopied] = useState<boolean>(false)
 
   const handleCopy = useCallback(() => {
-    setIsCopied(true)
     navigator.clipboard.writeText(value)
+    setIsCopied(true)
+  }, [value])
+
+  useEffect(() => {
+    setIsCopied(false)
   }, [value])
 
   return (
