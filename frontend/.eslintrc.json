@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": ["plugin:mist3rbru/react"],
+  "rules": {
+    "react/jsx-no-bind": "warn",
+
+    "@typescript-eslint/use-unknown-in-catch-callback-variable": "off",
+    "@typescript-eslint/no-magic-numbers": [
+      "warn",
+      {
+        "ignore": [-1, 0, 1, 2, 100, 200, 300, 400, 500],
+        "ignoreNumericLiteralTypes": true,
+        "ignoreTypeIndexes": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "prettier.configPath": "./.prettierrc",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "files.autoSave": "off",
+  "eslint.experimental.useFlatConfig": false
+}

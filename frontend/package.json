@@ -1,0 +1,50 @@
+{
+  "name": "@remote-file-transfer/frontend",
+  "private": true,
+  "main": "src/main/index.tsx",
+  "type": "module",
+  "scripts": {
+    "start": "vite preview",
+    "dev": "vite",
+    "lint": "run-s lint:tsc lint:prettier lint:eslint",
+    "lint:tsc": "tsc --noEmit",
+    "lint:prettier": "prettier --write .",
+    "lint:eslint": "eslint --fix \"src/**/*.ts{x,}\"",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.1",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.1",
+    "swr": "^2.2.5",
+    "tailwind-merge": "^2.2.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-plugin-mist3rbru": "^0.4.3",
+    "npm-run-all2": "^6.1.2",
+    "postcss": "^8.4.35",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "csstype": "3.1.2"
+    }
+  }
+}
