@@ -1,5 +1,5 @@
 import { cn } from '@/presentation/helpers/format.js'
-import { type ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 
 export type InputType<
   U extends React.HTMLInputTypeAttribute = React.HTMLInputTypeAttribute,

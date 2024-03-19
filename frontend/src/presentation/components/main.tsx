@@ -1,5 +1,5 @@
 import { cn } from '@/presentation/helpers/format.js'
-import { type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export interface MainProps {
   children: ReactNode
@@ -12,12 +12,11 @@ export function Main(props: MainProps): React.JSX.Element {
   return (
     <section
       data-testid="main"
-      className={cn(
-        'mx-auto w-11/12 max-w-screen-2xl py-24 text-black-base dark:text-white-base',
-        className
-      )}
+      className="min-h-screen min-w-full bg-zinc-950 py-24 text-white-base"
     >
-      {children}
+      <div className={cn('mx-auto w-11/12 max-w-screen-2xl', className)}>
+        {children}
+      </div>
     </section>
   )
 }

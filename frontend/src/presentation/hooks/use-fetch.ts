@@ -1,3 +1,4 @@
+import { formatRequest } from '@/presentation/helpers/request.js'
 import useSWR from 'swr'
 
 interface FetchResult<R> {
@@ -15,7 +16,7 @@ export function useFetch<R>(uri: string): FetchResult<R> {
       return undefined
     }
 
-    return fetch(uri).then(async res => res.json() as Promise<R>)
+    return fetch(formatRequest(uri)).then(async res => res.json() as Promise<R>)
   })
 
   return { data, mutate }

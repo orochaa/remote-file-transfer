@@ -1,5 +1,6 @@
 import { cn } from '@/presentation/helpers/format.js'
-import { type ChangeEvent, type DragEvent, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
+import type { ChangeEvent, DragEvent } from 'react'
 
 const handleEvent = (event: DragEvent): void => {
   event.preventDefault()
@@ -37,6 +38,10 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
 
   const validExtension = useCallback(
     (fileName: string): boolean => {
+      if (accept === '*') {
+        return true
+      }
+
       const extensionIndex = fileName.lastIndexOf('.')
       const fileExtension = fileName.slice(extensionIndex)
       const validExtensions = accept
@@ -120,7 +125,8 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
     (event: ChangeEvent<HTMLInputElement>): void => {
       const { files } = event.target
 
-      if (!files) return
+      if (!files?.length) return
+
       setFilesName(getFilesName(files))
       onDrop(files)
     },
@@ -136,7 +142,7 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={cn(
-        'relative flex flex-col rounded-sm border p-2 text-center',
+        'relative flex flex-col rounded-sm border p-2 text-center transition',
         filesName.length > 0 ? 'border-solid' : 'border-dashed',
         isDrag
           ? 'border-indigo-500'
@@ -165,7 +171,7 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
           </span>
         ))
       ) : (
-        <span>Arrastar Arquivo</span>
+        <span>Arrastar Arquivo Aqui</span>
       )}
     </div>
   )

@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
-import { type Upload } from '@/domain/models/upload-model.js'
+import type { Upload } from '@/domain/models/upload-model.js'
 import {
   Container,
+  CopyButton,
   FileDrop,
   Form,
   InputField,
@@ -76,6 +77,7 @@ export function UploadPage(): React.JSX.Element {
               accept="*"
               onDrop={files => field.onChange(files)}
               multiple
+              className="my-4"
             />
           )}
         />
@@ -137,9 +139,9 @@ export function UploadPage(): React.JSX.Element {
       </Form>
 
       {!!downloadUrl && (
-        <Container className="mx-auto w-fit min-w-40 border-2 border-zinc-400 bg-zinc-100 p-2">
+        <Container className="mx-auto mt-2 w-96 border-2 border-zinc-400 bg-zinc-100 p-2">
           <h2 className="m-0 p-2 text-center">Link para download</h2>
-          <p className="text-center">{downloadUrl}</p>
+          <CopyButton value={downloadUrl} />
         </Container>
       )}
     </Main>

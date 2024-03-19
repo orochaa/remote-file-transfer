@@ -5,6 +5,11 @@
   },
   "extends": ["plugin:mist3rbru/react"],
   "rules": {
+    "no-duplicate-imports": "off",
+
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/no-duplicates": "off",
+
     "react/jsx-no-bind": "warn",
 
     "@typescript-eslint/use-unknown-in-catch-callback-variable": "off",

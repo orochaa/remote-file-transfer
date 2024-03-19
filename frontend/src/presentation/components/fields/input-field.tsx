@@ -1,8 +1,5 @@
-import {
-  Input,
-  type InputProps,
-  type InputType,
-} from '@/presentation/components'
+import { Input } from '@/presentation/components'
+import type { InputProps, InputType } from '@/presentation/components'
 import { formatPlaceholder } from '@/presentation/helpers/format.js'
 import clsx from 'clsx'
 

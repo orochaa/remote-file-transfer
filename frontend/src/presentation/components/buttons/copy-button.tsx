@@ -21,12 +21,12 @@ export function CopyButton(props: CopyButtonProps): React.JSX.Element {
     <button
       type="button"
       className={clsx(
-        'font-lato dark:bg-dark-modal flex items-center gap-1 rounded border border-zinc-600 bg-stone-100 p-1 text-base shadow-md',
+        'flex items-center gap-1 rounded border border-zinc-600 bg-stone-100 p-1 font-lato text-base shadow-md dark:bg-dark-modal',
         className
       )}
       onClick={handleCopy}
     >
-      <p className="max-w-[280px] overflow-hidden whitespace-nowrap sm:max-w-sm">
+      <p className="line-clamp-1 w-full max-w-[280px] whitespace-nowrap sm:max-w-sm">
         {value}
       </p>
       <div className="relative pl-3">

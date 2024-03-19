@@ -1,4 +1,4 @@
-import { type KeyboardEvent } from 'react'
+import type { KeyboardEvent } from 'react'
 
 export function enterHandler(cb: () => void) {
   return (event: KeyboardEvent): void => {

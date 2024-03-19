@@ -1,5 +1,5 @@
 import { cn } from '@/presentation/helpers/format.js'
-import { type HTMLAttributes, type ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode

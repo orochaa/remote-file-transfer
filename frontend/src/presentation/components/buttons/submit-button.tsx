@@ -1,5 +1,5 @@
 import { cn } from '@/presentation/helpers/format.js'
-import { type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Spinner } from '../spinner'
 
 export interface SubmitButtonProps {
