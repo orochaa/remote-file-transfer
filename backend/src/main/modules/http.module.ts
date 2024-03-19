@@ -2,8 +2,7 @@ import { DownloadFileController } from '#presentation/controllers/download-file.
 import { DownloadUploadController } from '#presentation/controllers/download-upload.controller.js'
 import { FindUploadByIdController } from '#presentation/controllers/find-upload-by-id.controller.js'
 import { UploadController } from '#presentation/controllers/upload.controller.js'
-import { DownloadFileService } from '#services/usecases/download-file.service.js'
-import { DownloadUploadService } from '#services/usecases/download-upload.service.js'
+import { FindFileByIdService } from '#services/usecases/find-file-by-id.service.js'
 import { FindUploadByIdService } from '#services/usecases/find-upload-by-id.service.js'
 import { UploadService } from '#services/usecases/upload.service.js'
 import { ArchiverAdapter } from '#infra/data/arquiver-adapter.js'
@@ -33,8 +32,7 @@ import { resolve } from 'node:path'
     },
     UploadService,
     FindUploadByIdService,
-    DownloadUploadService,
-    DownloadFileService,
+    FindFileByIdService,
   ],
 })
 export class HttpModule {}

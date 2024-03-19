@@ -25,7 +25,7 @@ export class File {
   }
 
   get originalName(): string {
-    return this.props.name
+    return this.props.originalName
   }
 
   get path(): string {

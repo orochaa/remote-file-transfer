@@ -27,6 +27,22 @@ export class Upload {
     return this.props.message
   }
 
+  get name(): string {
+    return this.props.name
+  }
+
+  get originalName(): string {
+    return this.props.originalName
+  }
+
+  get mimetype(): string {
+    return this.props.mimetype
+  }
+
+  get path(): string {
+    return this.props.path
+  }
+
   get size(): number {
     return this.props.size
   }
@@ -53,6 +69,10 @@ export namespace Upload {
     id: UUID
     title: string
     message: string
+    name: string
+    originalName: string
+    mimetype: string
+    path: string
     size: number
     expiresAt: Date
     createdAt: Date
@@ -65,6 +85,10 @@ export namespace Upload {
     id?: string
     title: string
     message: string
+    name: string
+    originalName: string
+    mimetype: string
+    path: string
     size: number
     expiresAt: Date
     createdAt?: Date

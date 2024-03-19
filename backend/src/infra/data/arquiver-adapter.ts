@@ -10,7 +10,7 @@ import { join, resolve } from 'node:path'
 export class ArchiverAdapter {
   constructor(private readonly zipFolderPath: string) {}
 
-  async zip(files: File[]): Promise<File> {
+  async zip(files: File.Params[]): Promise<File> {
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const zipFileName = randomUUID().replaceAll('-', '')
     const zip = new File({
@@ -30,7 +30,9 @@ export class ArchiverAdapter {
     archive.pipe(zipStream)
 
     for (const file of files) {
-      archive.append(createReadStream(resolve(file.path)), { name: file.name })
+      archive.append(createReadStream(resolve(file.path)), {
+        name: file.originalName,
+      })
     }
 
     await archive.finalize()

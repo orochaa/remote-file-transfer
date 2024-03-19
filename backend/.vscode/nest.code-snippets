@@ -37,10 +37,7 @@
   },
   "createRepositoryClass": {
     "scope": "typescript",
-    "prefix": [
-      "repo",
-      "repository"
-    ],
+    "prefix": ["repo", "repository"],
     "body": [
       "import { $1Mapper } from '#domain/mappers'",
       "import { $1 } from '#domain/entities'",
@@ -166,9 +163,7 @@
   },
   "createModule": {
     "scope": "typescript",
-    "prefix": [
-      "module"
-    ],
+    "prefix": ["module"],
     "body": [
       "import { Module } from '@nestjs/common'",
       "",
@@ -183,9 +178,7 @@
   },
   "createGuard": {
     "scope": "typescript",
-    "prefix": [
-      "guard"
-    ],
+    "prefix": ["guard"],
     "body": [
       "import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'",
       "import { Observable } from 'rxjs'",
@@ -207,9 +200,7 @@
   },
   "createDecorator": {
     "scope": "typescript",
-    "prefix": [
-      "decorator"
-    ],
+    "prefix": ["decorator"],
     "body": [
       "import { applyDecorators } from '@nestjs/common'",
       "",
@@ -223,9 +214,7 @@
   },
   "createParamDecorator": {
     "scope": "typescript",
-    "prefix": [
-      "paramDecorator"
-    ],
+    "prefix": ["paramDecorator"],
     "body": [
       "import {",
       "  ExecutionContext,",
@@ -242,5 +231,10 @@
       ")",
       "",
     ],
+  },
+  "private readonly": {
+    "scope": "typescript",
+    "prefix": "pr",
+    "body": "private readonly $0",
   },
 }

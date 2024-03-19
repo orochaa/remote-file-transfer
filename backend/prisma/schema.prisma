@@ -14,13 +14,17 @@ datasource db {
 }
 
 model Upload {
-  id        String   @id
-  title     String
-  message   String
-  size      Int
-  expiresAt DateTime
-  createdAt DateTime
-  updatedAt DateTime @updatedAt
+  id           String   @id
+  title        String
+  message      String
+  name         String
+  originalName String
+  mimetype     String
+  path         String
+  size         Int
+  expiresAt    DateTime
+  createdAt    DateTime
+  updatedAt    DateTime @updatedAt
 
   files File[]
 }
@@ -30,8 +34,8 @@ model File {
   uploadId     String
   name         String
   originalName String
-  path         String
   mimetype     String
+  path         String
   size         Int
   createdAt    DateTime
 
