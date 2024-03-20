@@ -1,6 +1,7 @@
 import type { Upload } from '@/domain/models/upload-model.js'
 import { Main } from '@/presentation/components/index.js'
 import {
+  cn,
   formatBytes,
   formatDateDifferenceInDays,
 } from '@/presentation/helpers/format.js'
@@ -35,7 +36,9 @@ export function DownloadPage(): React.JSX.Element {
             )}
             {!!upload.message && (
               <p className="h-full rounded border border-zinc-600 bg-zinc-900 p-1.5">
-                {upload.message}
+                {upload.message.includes('uuid')
+                  ? 'Upload expirado ou inexistente'
+                  : upload.message}
               </p>
             )}
           </div>
@@ -43,23 +46,29 @@ export function DownloadPage(): React.JSX.Element {
         <div className="flex flex-col gap-2 p-2">
           <h2 className="text-center">Arquivos</h2>
           <div className="flex max-h-72 flex-col gap-1.5 overflow-y-auto">
-            {upload?.files.map(file => (
-              <a
-                key={file.id}
-                href={formatRequest('download/file', file.id)}
-                className="flex items-center gap-3 rounded border border-zinc-600 bg-zinc-900 p-1.5 hover:border-zinc-500"
-              >
-                <p className="line-clamp-1 w-full">{file.name}</p>
-                <span className="shrink-0 text-sm">
-                  {formatBytes(file.size)}
-                </span>
-                <MdDownload size={20} className="shrink-0 text-indigo-500" />
-              </a>
-            ))}
+            {Array.isArray(upload?.files) &&
+              upload.files.map(file => (
+                <a
+                  key={file.id}
+                  href={formatRequest('download/file', file.id)}
+                  className="flex items-center gap-3 rounded border border-zinc-600 bg-zinc-900 p-1.5 hover:border-zinc-500"
+                  title={`Baixar ${file.name}`}
+                >
+                  <p className="line-clamp-1 w-full">{file.name}</p>
+                  <span className="shrink-0 text-sm">
+                    {formatBytes(file.size)}
+                  </span>
+                  <MdDownload size={20} className="shrink-0 text-indigo-500" />
+                </a>
+              ))}
           </div>
           <a
             href={formatRequest('download/upload', upload?.id)}
-            className="rounded bg-indigo-500 p-2 text-center transition hover:bg-indigo-500/90"
+            className={cn(
+              'rounded bg-indigo-500 p-2 text-center transition hover:bg-indigo-500/90',
+              (!Array.isArray(upload?.files) || upload.files.length === 0) &&
+                'pointer-events-none opacity-90'
+            )}
           >
             Download
           </a>
