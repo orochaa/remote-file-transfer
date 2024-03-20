@@ -42,7 +42,7 @@ export function DownloadPage(): React.JSX.Element {
               </h3>
             )}
             {!!upload.message && (
-              <p className="h-full rounded border border-zinc-600 bg-zinc-900 p-1.5">
+              <p className="h-full max-h-64 overflow-y-auto rounded border border-zinc-600 bg-zinc-900 p-1.5">
                 {upload.message.includes('uuid')
                   ? 'Upload expirado ou inexistente'
                   : upload.message}
@@ -85,7 +85,7 @@ export function DownloadPage(): React.JSX.Element {
 
       {!!upload?.expiresAt && (
         <p className="mt-2 text-center text-sm">
-          Expira em {formatDateDifferenceInDays(upload.expiresAt)} dias
+          Link expira em {formatDateDifferenceInDays(upload.expiresAt)} dias
         </p>
       )}
     </Main>

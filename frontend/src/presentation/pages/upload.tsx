@@ -7,6 +7,7 @@ import {
   Form,
   InputField,
   SubmitButton,
+  TextArea,
 } from '@/presentation/components/index.js'
 import { Main } from '@/presentation/components/main.js'
 import { formatDateInput } from '@/presentation/helpers/format.js'
@@ -95,7 +96,6 @@ export function UploadPage(): React.JSX.Element {
               label={{ text: 'Título' }}
               input={{
                 ...field,
-                id: 'title',
                 type: 'text',
               }}
             />
@@ -106,15 +106,20 @@ export function UploadPage(): React.JSX.Element {
           name="message"
           control={control}
           render={({ field }) => (
-            <InputField
-              label={{ text: 'Mensagem' }}
-              input={{
-                ...field,
-                id: 'message',
-                type: 'text',
-                placeholder: 'Digite sua mensagem',
-              }}
-            />
+            <>
+              <label
+                htmlFor="message"
+                className="m-[5px 0 3px 3px] block font-raleway text-xl font-bold text-white"
+              >
+                Mensagem
+              </label>
+              <TextArea
+                {...field}
+                id="message"
+                placeholder="Digite sua mensagem"
+                className="resize"
+              />
+            </>
           )}
         />
 

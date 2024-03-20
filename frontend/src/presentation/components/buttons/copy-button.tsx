@@ -30,9 +30,7 @@ export function CopyButton(props: CopyButtonProps): React.JSX.Element {
       )}
       onClick={handleCopy}
     >
-      <p className="line-clamp-1 w-full max-w-[280px] whitespace-nowrap sm:max-w-sm">
-        {value}
-      </p>
+      <p className="line-clamp-1 w-full whitespace-nowrap">{value}</p>
       <div className="relative pl-3">
         <div
           className={clsx(
