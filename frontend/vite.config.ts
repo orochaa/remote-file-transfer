@@ -34,7 +34,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@/tests': resolve(__dirname, '__tests__'),
       '@': resolve(__dirname, 'src'),
     },
   },

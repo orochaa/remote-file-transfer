@@ -144,9 +144,7 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
       className={cn(
         'relative flex flex-col rounded-sm border p-2 text-center transition',
         filesName.length > 0 ? 'border-solid' : 'border-dashed',
-        isDrag
-          ? 'border-indigo-500'
-          : 'border-zinc-600 dark:border-zinc-400 dark:hover:border-zinc-300',
+        isDrag ? 'border-indigo-500' : 'border-zinc-500 hover:border-zinc-400',
         className
       )}
     >
@@ -164,12 +162,17 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
       {isDrag ? (
         <span>Soltar Arquivo</span>
       ) : filesName.length > 0 ? (
-        filesName.map((name, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <span key={i} className="line-clamp-1 text-ellipsis">
-            {name}
+        <>
+          <span className="font-semibold text-zinc-200">
+            Arquivos carregados:
           </span>
-        ))
+          {filesName.map((name, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <span key={i} className="line-clamp-1 text-ellipsis">
+              {name}
+            </span>
+          ))}
+        </>
       ) : (
         <span>Arrastar Arquivo Aqui</span>
       )}

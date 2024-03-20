@@ -25,7 +25,7 @@ export function CopyButton(props: CopyButtonProps): React.JSX.Element {
     <button
       type="button"
       className={clsx(
-        'flex items-center gap-1 rounded border border-zinc-600 bg-stone-100 p-1 font-lato text-base shadow-md dark:bg-dark-modal',
+        'flex items-center gap-1 rounded border border-zinc-600 bg-dark-modal p-1 font-lato text-base shadow-md',
         className
       )}
       onClick={handleCopy}
@@ -43,10 +43,7 @@ export function CopyButton(props: CopyButtonProps): React.JSX.Element {
         {isCopied ? (
           <MdDone size={18} className="text-green-600" />
         ) : (
-          <MdContentCopy
-            size={18}
-            className="text-zinc-700 dark:text-zinc-400"
-          />
+          <MdContentCopy size={18} className="text-zinc-400" />
         )}
       </div>
     </button>
