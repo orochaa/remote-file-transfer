@@ -27,7 +27,7 @@ export class UploadRepository {
       where: {
         id,
         expiresAt: {
-          lt: new Date(),
+          gte: new Date(),
         },
       },
       include: {
@@ -40,5 +40,20 @@ export class UploadRepository {
     }
 
     return new Upload(data)
+  }
+
+  async listExpired(): Promise<Upload[]> {
+    const expiredUploads = await this.db.upload.findMany({
+      where: {
+        expiresAt: {
+          lt: new Date(),
+        },
+      },
+      include: {
+        files: true,
+      },
+    })
+
+    return expiredUploads.map(upload => new Upload(upload))
   }
 }

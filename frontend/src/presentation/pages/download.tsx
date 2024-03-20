@@ -43,7 +43,8 @@ export function DownloadPage(): React.JSX.Element {
             )}
             {!!upload.message && (
               <p className="h-full max-h-64 overflow-y-auto rounded border border-zinc-600 bg-zinc-900 p-1.5">
-                {upload.message.includes('uuid')
+                {upload.message.includes('uuid') ||
+                upload.message.includes('not found')
                   ? 'Upload expirado ou inexistente'
                   : upload.message}
               </p>

@@ -1,32 +1,18 @@
 /* eslint-disable security/detect-non-literal-fs-filename */
-import { PrismaService } from '#infra/database/postgres/prisma.service.js'
+import { UploadRepository } from '#infra/database/postgres/upload-repository.js'
 import { Injectable } from '@nestjs/common'
 import { Cron } from '@nestjs/schedule'
 import { unlink } from 'node:fs/promises'
 
 @Injectable()
 export class ScheduledExpirationService {
-  constructor(private readonly db: PrismaService) {}
+  constructor(private readonly uploadRepository: UploadRepository) {}
 
   // Run every day at midnight
   @Cron('0 0 * * *')
   async handle(): Promise<void> {
     try {
-      const expiredUploads = await this.db.upload.findMany({
-        where: {
-          expiresAt: {
-            lt: new Date(),
-          },
-        },
-        select: {
-          path: true,
-          files: {
-            select: {
-              path: true,
-            },
-          },
-        },
-      })
+      const expiredUploads = await this.uploadRepository.listExpired()
 
       for (const expiredUpload of expiredUploads) {
         await this.removeFile(expiredUpload.path)
