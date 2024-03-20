@@ -7,7 +7,7 @@ export interface InputFieldProps<T extends InputType> {
   label: {
     text: string
   }
-  input: Omit<InputProps<T>, 'className' | 'id'>
+  input: Omit<InputProps<T>, 'className'>
 }
 
 export function InputField<T extends InputType>(

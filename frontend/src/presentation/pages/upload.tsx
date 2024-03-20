@@ -66,11 +66,8 @@ export function UploadPage(): React.JSX.Element {
   }, [])
 
   return (
-    <Main>
-      <Form
-        onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto w-fit min-w-96"
-      >
+    <Main className="w-fit min-w-96">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="files"
           control={control}
@@ -98,6 +95,7 @@ export function UploadPage(): React.JSX.Element {
               label={{ text: 'Título' }}
               input={{
                 ...field,
+                id: 'title',
                 type: 'text',
               }}
             />
@@ -112,6 +110,7 @@ export function UploadPage(): React.JSX.Element {
               label={{ text: 'Mensagem' }}
               input={{
                 ...field,
+                id: 'message',
                 type: 'text',
                 placeholder: 'Digite sua mensagem',
               }}
@@ -138,7 +137,7 @@ export function UploadPage(): React.JSX.Element {
       </Form>
 
       {!!downloadUrl && (
-        <Container className="mx-auto mt-2 w-96 border-2 border-zinc-400 bg-zinc-100 p-2">
+        <Container className="mt-2">
           <h2 className="m-0 p-2 text-center">Link para download</h2>
           <CopyButton value={downloadUrl} />
         </Container>
