@@ -1,6 +1,9 @@
 import type { Upload } from '@/domain/models/upload-model.js'
 import { Main } from '@/presentation/components/index.js'
-import { formatBytes } from '@/presentation/helpers/format.js'
+import {
+  formatBytes,
+  formatDateDifferenceInDays,
+} from '@/presentation/helpers/format.js'
 import { formatRequest } from '@/presentation/helpers/request.js'
 import { useFetch } from '@/presentation/hooks/use-fetch.js'
 import { MdDownload } from 'react-icons/md'
@@ -15,7 +18,7 @@ export function DownloadPage(): React.JSX.Element {
     <Main>
       {!!upload?.expiresAt && (
         <p className="my-1 text-center">
-          Expira dia {new Date(upload.expiresAt).toLocaleDateString('pt-br')}
+          Expira em {formatDateDifferenceInDays(upload.expiresAt)} dias
         </p>
       )}
       <div

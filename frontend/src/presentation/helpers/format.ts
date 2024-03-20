@@ -25,3 +25,24 @@ export function formatBytes(bytes: number, decimals: number = 2): string {
 
   return `${Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
+
+export function formatDateDifferenceInDays(date: string | Date): number {
+  if (typeof date === 'string') date = new Date(date)
+
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000
+  const currentDate = new Date()
+  const diffMilliseconds = currentDate.getTime() - date.getTime()
+
+  return Math.round(Math.abs(diffMilliseconds / oneDayInMilliseconds))
+}
+
+export function formatDateInput(date: string | Date): string {
+  if (typeof date === 'string') date = new Date(date)
+
+  const day = (date.getDate() + 1).toString().padStart(2, '0')
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.getFullYear()
+
+  return `${year}-${month}-${day}`
+}

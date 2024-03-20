@@ -9,6 +9,7 @@ import {
   SubmitButton,
 } from '@/presentation/components/index.js'
 import { Main } from '@/presentation/components/main.js'
+import { formatDateInput } from '@/presentation/helpers/format.js'
 import { formatRequest } from '@/presentation/helpers/request.js'
 import { useCallback, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -28,17 +29,19 @@ export function UploadPage(): React.JSX.Element {
   const {
     control,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useForm<UploadForm>({
     defaultValues: {
       title: '',
       message: '',
-      expiresAt: new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        today.getDate() + 7
-      ).toISOString(),
+      expiresAt: formatDateInput(
+        new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+          today.getDate() + 7
+        )
+      ),
     },
   })
 
@@ -110,6 +113,7 @@ export function UploadPage(): React.JSX.Element {
               input={{
                 ...field,
                 type: 'text',
+                placeholder: 'Digite sua mensagem',
               }}
             />
           )}
@@ -120,22 +124,17 @@ export function UploadPage(): React.JSX.Element {
           control={control}
           render={({ field }) => (
             <InputField
-              label={{ text: 'Expira em' }}
+              label={{ text: 'Expira dia' }}
               input={{
                 ...field,
                 type: 'date',
-                value: new Date(field.value)
-                  .toLocaleDateString('pt-br')
-                  .split('/')
-                  .reverse()
-                  .join('-'),
-                disabled: true,
+                value: formatDateInput(field.value),
               }}
             />
           )}
         />
 
-        <SubmitButton isFetching={isLoading}>Enviar</SubmitButton>
+        <SubmitButton isFetching={isSubmitting}>Enviar</SubmitButton>
       </Form>
 
       {!!downloadUrl && (

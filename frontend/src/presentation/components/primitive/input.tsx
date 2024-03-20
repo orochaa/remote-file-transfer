@@ -32,7 +32,7 @@ export function Input<TType extends InputType>(
           'file:rounded-sm file:border file:border-solid file:border-zinc-400 file:hover:border-zinc-600 dark:file:border-zinc-700/60 dark:file:bg-zinc-900/90 dark:file:text-white-base dark:file:hover:border-white-base',
         !isFile &&
           !isCheckbox &&
-          'rounded-sm border-zinc-400 px-[5px] py-[3px] font-lato text-base text-[#2f2f2f] outline-none placeholder:text-base hover:border-zinc-600 focus:border-hover-blue disabled:border disabled:bg-zinc-200 dark:border-zinc-600/60 dark:bg-transparent dark:text-white dark:placeholder:text-zinc-400/60 dark:hover:border-white-base dark:focus:border-blue-500',
+          'rounded-sm border-zinc-400 px-[5px] py-[3px] font-lato text-base text-[#2f2f2f] outline-none placeholder:text-base hover:border-zinc-600 focus:border-hover-blue disabled:border disabled:bg-zinc-200 dark:border-zinc-600/60 dark:bg-transparent dark:text-white dark:[color-scheme:dark] dark:placeholder:text-zinc-400/60 dark:hover:border-white-base dark:focus:border-blue-500',
         props.className
       )}
     />
