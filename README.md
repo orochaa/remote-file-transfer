@@ -1,6 +1,6 @@
 # `remote-file-transfer`
 
-Project created based on [wetransfer](https://wetransfer.com/) websile. Covering all files operations, to be able to transfer files throught a single link.
+Project inspired by [wetransfer](https://wetransfer.com/). Covering all files operations, to be able to transfer files throught a single link.
 
 ## Upload Page
 
