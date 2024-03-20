@@ -26,6 +26,9 @@ export class UploadRepository {
     const data = await this.db.upload.findUnique({
       where: {
         id,
+        expiresAt: {
+          lt: new Date(),
+        },
       },
       include: {
         files: true,
@@ -37,22 +40,5 @@ export class UploadRepository {
     }
 
     return new Upload(data)
-  }
-
-  async update(data: Upload): Promise<void> {
-    await this.db.upload.update({
-      data: new UploadMapper(data).toPrisma(),
-      where: {
-        id: data.id,
-      },
-    })
-  }
-
-  async delete(id: string): Promise<void> {
-    await this.db.upload.delete({
-      where: {
-        id,
-      },
-    })
   }
 }
