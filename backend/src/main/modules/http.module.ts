@@ -13,11 +13,11 @@ import { UploadRepository } from '#infra/database/postgres/upload-repository.js'
 import { Module } from '@nestjs/common'
 import { MulterModule } from '@nestjs/platform-express'
 import { ScheduleModule } from '@nestjs/schedule'
-import { resolve } from 'node:path'
+import path from 'node:path'
 
 @Module({
   imports: [
-    MulterModule.register({ dest: resolve('public/uploads') }),
+    MulterModule.register({ dest: path.resolve('public/uploads') }),
     ScheduleModule.forRoot(),
   ],
   controllers: [
@@ -33,7 +33,7 @@ import { resolve } from 'node:path'
     {
       provide: ArchiverAdapter,
       useFactory: (): ArchiverAdapter =>
-        new ArchiverAdapter(resolve('public/zips')),
+        new ArchiverAdapter(path.resolve('public/zips')),
     },
     UploadService,
     FindUploadByIdService,

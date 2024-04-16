@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common'
 import archiver from 'archiver'
 import { randomUUID } from 'node:crypto'
 import { createReadStream, createWriteStream } from 'node:fs'
-import { join, resolve } from 'node:path'
+import path from 'node:path'
 
 @Injectable()
 export class ArchiverAdapter {
@@ -16,7 +16,7 @@ export class ArchiverAdapter {
     const zip = new File({
       name: zipFileName,
       originalName: 'remote-file-transfer.zip',
-      path: join(this.zipFolderPath, zipFileName),
+      path: path.join(this.zipFolderPath, zipFileName),
       mimetype: 'application/zip',
       size: 0,
     })
@@ -30,7 +30,7 @@ export class ArchiverAdapter {
     archive.pipe(zipStream)
 
     for (const file of files) {
-      archive.append(createReadStream(resolve(file.path)), {
+      archive.append(createReadStream(path.resolve(file.path)), {
         name: file.originalName,
       })
     }
