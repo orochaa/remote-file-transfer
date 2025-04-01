@@ -11,7 +11,6 @@ export class ArchiverAdapter {
   constructor(private readonly zipFolderPath: string) {}
 
   async zip(files: File.Params[]): Promise<File> {
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const zipFileName = randomUUID().replaceAll('-', '')
     const zip = new File({
       name: zipFileName,

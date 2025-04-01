@@ -10,7 +10,7 @@ export function Container(props: ContainerProps): React.JSX.Element {
     <div
       {...props}
       className={cn(
-        'flex flex-col rounded border-2 border-zinc-700 bg-zinc-900 p-5',
+        'flex flex-col rounded-sm border-2 border-zinc-700 bg-zinc-900 p-5',
         props.className
       )}
     >

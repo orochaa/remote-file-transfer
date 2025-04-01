@@ -39,7 +39,7 @@ export function UploadPage(): React.JSX.Element {
         new Date(
           today.getFullYear(),
           today.getMonth(),
-          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+
           today.getDate() + 7
         )
       ),
@@ -109,7 +109,7 @@ export function UploadPage(): React.JSX.Element {
             <>
               <label
                 htmlFor="message"
-                className="m-[5px 0 3px 3px] block font-raleway text-xl font-bold text-white"
+                className="m-[5px 0 3px 3px] font-raleway block text-xl font-bold text-white"
               >
                 Mensagem
               </label>

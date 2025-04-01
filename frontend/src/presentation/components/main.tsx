@@ -12,9 +12,11 @@ export function Main(props: MainProps): React.JSX.Element {
   return (
     <section
       data-testid="main"
-      className="min-h-screen min-w-full bg-zinc-950 py-24 text-white-base"
+      className="text-white-base min-h-screen min-w-full bg-zinc-950 py-24"
     >
-      <div className={cn('mx-auto w-11/12 max-w-screen-2xl', className)}>
+      <div
+        className={cn('mx-auto w-11/12 max-w-(--breakpoint-2xl)', className)}
+      >
         {children}
       </div>
     </section>

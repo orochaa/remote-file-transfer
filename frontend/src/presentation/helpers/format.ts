@@ -15,10 +15,12 @@ export const formatPlaceholder = (label: string): string => {
 }
 
 export function formatBytes(bytes: number, decimals: number = 2): string {
-  if (bytes === 0) return '0 Bytes'
+  if (bytes === 0) {
+    return '0 Bytes'
+  }
 
   const k = 1024
-  const dm = decimals < 0 ? 0 : decimals
+  const dm = Math.max(decimals, 0)
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
   const i = Math.floor(Math.log(bytes) / Math.log(k))
@@ -27,9 +29,10 @@ export function formatBytes(bytes: number, decimals: number = 2): string {
 }
 
 export function formatDateDifferenceInDays(date: string | Date): number {
-  if (typeof date === 'string') date = new Date(date)
+  if (typeof date === 'string') {
+    date = new Date(date)
+  }
 
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   const oneDayInMilliseconds = 24 * 60 * 60 * 1000
   const currentDate = new Date()
   const diffMilliseconds = currentDate.getTime() - date.getTime()
@@ -38,7 +41,9 @@ export function formatDateDifferenceInDays(date: string | Date): number {
 }
 
 export function formatDateInput(date: string | Date): string {
-  if (typeof date === 'string') date = new Date(date)
+  if (typeof date === 'string') {
+    date = new Date(date)
+  }
 
   const day = (date.getDate() + 1).toString().padStart(2, '0')
   const month = (date.getMonth() + 1).toString().padStart(2, '0')

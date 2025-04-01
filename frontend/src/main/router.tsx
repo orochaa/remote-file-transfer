@@ -1,5 +1,5 @@
 import { DownloadPage, UploadPage } from '@/presentation/pages/index.js'
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router'
 
 export function Router(): React.JSX.Element {
   return (

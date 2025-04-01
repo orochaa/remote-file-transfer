@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unnecessary-type-parameters */
 type Prettify<T> = {
   [K in keyof T]: T[K]
 } & {}

@@ -56,7 +56,9 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
 
   const getFilesName = useCallback(
     (files: FileList | File[]): string[] => {
-      if (files.length === 0) return []
+      if (files.length === 0) {
+        return []
+      }
       const names = [...files].map(file => file.name)
 
       return limitResponse(names)
@@ -99,7 +101,9 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
     (event: DragEvent) => {
       handleEvent(event)
 
-      if (!isDrag) setIsDrag(true)
+      if (!isDrag) {
+        setIsDrag(true)
+      }
     },
     [isDrag]
   )
@@ -125,7 +129,9 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
     (event: ChangeEvent<HTMLInputElement>): void => {
       const { files } = event.target
 
-      if (!files?.length) return
+      if (!files?.length) {
+        return
+      }
 
       setFilesName(getFilesName(files))
       onDrop(files)
@@ -142,7 +148,7 @@ export function FileDrop(props: FileDropProps): React.JSX.Element {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={cn(
-        'relative flex flex-col rounded-sm border p-2 text-center transition',
+        'relative flex flex-col rounded-xs border p-2 text-center transition',
         filesName.length > 0 ? 'border-solid' : 'border-dashed',
         isDrag ? 'border-indigo-500' : 'border-zinc-500 hover:border-zinc-400',
         className

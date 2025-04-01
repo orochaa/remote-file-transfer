@@ -16,7 +16,7 @@ export function SubmitButton(props: SubmitButtonProps): React.JSX.Element {
     <button
       data-testid="submit-button"
       className={cn(
-        'relative mx-auto mt-4 flex w-4/5 max-w-sm items-center justify-center rounded bg-purple-700 px-1.5 py-1 text-lg text-white transition hover:bg-purple-600 disabled:opacity-50',
+        'relative mx-auto mt-4 flex w-4/5 max-w-sm items-center justify-center rounded-sm bg-purple-700 px-1.5 py-1 text-lg text-white transition hover:bg-purple-600 disabled:opacity-50',
         className
       )}
       type="submit"

@@ -21,7 +21,7 @@ export function InputField<T extends InputType>(
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label
         htmlFor={id}
-        className="m-[5px 0 3px 3px] block font-raleway text-xl font-bold text-white"
+        className="m-[5px 0 3px 3px] font-raleway block text-xl font-bold text-white"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: label.text }}
       />

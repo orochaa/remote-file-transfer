@@ -18,12 +18,10 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/tests/*": ["__tests__/*"],
       "@/*": ["src/*"]
     },
 
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"]
-  },
-  "references": [{ "path": "./tsconfig.node.json" }]
+  }
 }

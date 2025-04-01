@@ -1,6 +1,41 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-*: initial;
+  --font-lato: Lato, sans-serif;
+  --font-poppins: Poppins, sans-serif;
+  --font-raleway: Raleway, sans-serif;
+  --font-roboto: Roboto, sans-serif;
+  --font-quicksand: Quicksand, sans-serif;
+
+  --color-main: #0053ac;
+  --color-dark-main: #0070cc;
+  --color-dark-modal: #0d1117;
+  --color-hover-blue: #006bc2;
+  --color-hover-light-blue: #0080e7;
+  --color-black-base: #444444;
+  --color-white-base: #d0d0d0;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -34,6 +69,10 @@ h5 {
 h6 {
   font-size: 1rem;
   font-weight: 200;
+}
+
+button {
+  cursor: pointer;
 }
 
 input:-webkit-autofill,

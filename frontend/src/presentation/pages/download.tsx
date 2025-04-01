@@ -9,7 +9,7 @@ import { formatRequest } from '@/presentation/helpers/request.js'
 import { useFetch } from '@/presentation/hooks/use-fetch.js'
 import { MdDownload } from 'react-icons/md'
 import { RiArrowLeftSLine } from 'react-icons/ri'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router'
 
 export function DownloadPage(): React.JSX.Element {
   const { uploadId } = useParams()
@@ -20,10 +20,14 @@ export function DownloadPage(): React.JSX.Element {
   const hasText = !!(upload?.title || upload?.message)
 
   return (
-    <Main className={hasText ? 'max-w-screen-lg' : 'max-w-screen-sm'}>
+    <Main
+      className={
+        hasText ? 'max-w-(--breakpoint-lg)' : 'max-w-(--breakpoint-sm)'
+      }
+    >
       <Link
         to="/"
-        className="mb-4 flex w-fit items-center gap-1 rounded border border-zinc-600 bg-zinc-900 p-2 transition hover:bg-zinc-800/90 hover:shadow"
+        className="mb-4 flex w-fit items-center gap-1 rounded-sm border border-zinc-600 bg-zinc-900 p-2 transition hover:bg-zinc-800/90 hover:shadow-sm"
       >
         <RiArrowLeftSLine size={22} />
         Adicionar envio
@@ -37,12 +41,12 @@ export function DownloadPage(): React.JSX.Element {
           <div className="flex flex-col gap-2 p-2">
             <h2 className="text-center">Upload</h2>
             {!!upload.title && (
-              <h3 className="rounded border border-zinc-600 bg-zinc-900 p-1.5">
+              <h3 className="rounded-sm border border-zinc-600 bg-zinc-900 p-1.5">
                 {upload.title}
               </h3>
             )}
             {!!upload.message && (
-              <p className="h-full max-h-64 overflow-y-auto rounded border border-zinc-600 bg-zinc-900 p-1.5">
+              <p className="h-full max-h-64 overflow-y-auto rounded-sm border border-zinc-600 bg-zinc-900 p-1.5">
                 {upload.message.includes('uuid') ||
                 upload.message.includes('not found')
                   ? 'Upload expirado ou inexistente'
@@ -60,7 +64,7 @@ export function DownloadPage(): React.JSX.Element {
                 <a
                   key={file.id}
                   href={formatRequest('download/file', file.id)}
-                  className="flex items-center gap-3 rounded border border-zinc-600 bg-zinc-900 p-1.5 hover:border-zinc-500 hover:shadow"
+                  className="flex items-center gap-3 rounded-sm border border-zinc-600 bg-zinc-900 p-1.5 hover:border-zinc-500 hover:shadow-sm"
                   title={`Baixar ${file.name}`}
                 >
                   <p className="line-clamp-1 w-full">{file.name}</p>
@@ -74,7 +78,7 @@ export function DownloadPage(): React.JSX.Element {
           <a
             href={formatRequest('download/upload', upload?.id)}
             className={cn(
-              'rounded bg-indigo-500 p-2 text-center font-semibold transition hover:bg-indigo-500/95 hover:shadow',
+              'rounded-sm bg-indigo-500 p-2 text-center font-semibold transition hover:bg-indigo-500/95 hover:shadow-sm',
               (!Array.isArray(upload?.files) || upload.files.length === 0) &&
                 'pointer-events-none opacity-90'
             )}
